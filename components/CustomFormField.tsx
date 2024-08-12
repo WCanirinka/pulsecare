@@ -13,6 +13,8 @@ import { Input } from "@/components/ui/input";
 import { FormFieldType } from './forms/PatientForm';
 import { twMerge } from 'tailwind-merge';
 import Image from 'next/image';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 interface CustomProps {
   control: Control<any>;
@@ -31,7 +33,7 @@ interface CustomProps {
 }
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
-    const { fieldType, imageSrc, iconAlt, placeholder } = props;
+    const { fieldType, imageSrc, iconSrc, iconAlt, placeholder } = props;
 
     switch (fieldType) {
         case FormFieldType.INPUT:
@@ -39,11 +41,11 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                 <div className="flex rounded-md border-dark-500 bg-dark-400">
                     {iconSrc && (
                         <Image
-                            src={iconSrc}
-                            height={24}
-                            width={24}
-                            alt={iconAlt || 'icon'}
-                            className="ml-2"
+                          src={iconSrc}
+                          height={24}
+                          width={24}
+                          alt={iconAlt || 'icon'}
+                          className="ml-2"
                         />
                     )}
                     <FormControl>
@@ -55,7 +57,20 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
                     </FormControl>
                 </div>
             )
-    
+        case FormFieldType.PHONE_INPUT:
+          return (
+            <FormControl>
+              <PhoneInput
+                defaultCountry="US"
+                placeholder={placeholder}
+                international
+                withCountryCallingCode
+                value={field.value as E164Number | undefined}
+                onChange={field.onChange}
+                className="input-phone"
+              />
+            </FormControl>
+          )
         default:
             break;
     }
