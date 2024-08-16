@@ -8,13 +8,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { FormFieldType } from './forms/PatientForm';
+import { FormFieldType } from '@/components/forms/PatientForm';
 import { twMerge } from 'tailwind-merge';
 import Image from 'next/image';
-import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
 
 interface CustomProps {
   control: Control<any>;
